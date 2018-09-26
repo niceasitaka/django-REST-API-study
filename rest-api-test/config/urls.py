@@ -13,4 +13,6 @@ urlpatterns = [
 	path('rest-api/', include('rest_framework.urls')),
 	
 	path('blog/', views.blog_page),
+	
+	path('api/blog/', views.Blog_api.as_view()),
 ]
