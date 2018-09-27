@@ -5,6 +5,30 @@
 	<title></title>
 </head>
 <body>
-	Hello, '{{ python_world }}' World!
+	<table>
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+		{% for post in post_list %}
+			<tr>
+				<td>{{ post.title }}</td>
+				<td>{{ post.author }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	
+	{% for page in total_page %}
+		<a {% if current_page != page %} href="?page={{ page }}" {% endif %}
+			<span {% if current_page == page %} style="font-weight:bold" {% endif %}>
+		{{ page }}
+		
+	{% endfor %}
+	
 </body>
 </html>
