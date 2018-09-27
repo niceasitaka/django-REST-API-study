@@ -5,7 +5,7 @@ from rest_framework_swagger.views import get_swagger_view
 
 from django_rest_test import views
 
-schema_view = get_swagger_view(title='Pastebin API')
+schema_view = get_swagger_view(title='REST API TEST')
 
 urlpatterns = [
 	path('admin/', admin.site.urls),

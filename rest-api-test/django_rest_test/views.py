@@ -4,15 +4,19 @@ from rest_framework import serializers, mixins
 from rest_framework.generics import GenericAPIView
 
 from .models import Post
+from .serializers import PostSerializer
 
 def blog_page(request):
 	post_list = Post.objects.all()
 	return HttpResponse('hello!' + post_list[0].title)
 
+# 아래 내용은 serializers.py 로 옮김
+'''
 class PostSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Post
 		fields = ['title', 'content', 'reg_date']
+'''
 
 class Blog_api(GenericAPIView, mixins.ListModelMixin):
 # ListModelMixin은 GeneicAPIView에 queryset과 serializer_class를 기반으로 하여 데이터 List를 만들어줌
