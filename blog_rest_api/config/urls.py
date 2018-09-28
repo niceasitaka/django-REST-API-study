@@ -5,4 +5,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path('board/', include('post_service.urls', namespace='post_service')),
+	path('user/', include('user_manager.urls', namespace='user_manager'))
 ]

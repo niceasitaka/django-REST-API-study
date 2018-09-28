@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		회원가입
+	</title>
+</head>
+<body>
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ join_form }}
+		<input type="submit" value="회원가입">
+	</form>
+</body>
+</html>
