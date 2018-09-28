@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Login form
+	</title>
+</head>
+<body>
+	<form action="{% url 'post_service:login_validate' %}" method="POST">
+		{% csrf_token %}
+		{{ login_form }}
+		<input type="submit" value="로그인">
+	</form>
+</body>
+</html>
