@@ -1,8 +1,34 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views.generic import ListView
+#from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Post
 
+class PostListView(ListView):
+	model = Post
+	template_name = 'post_list.html'
+	paginate_by = 3
+	
+	def get_context_data(self, **kwargs):
+		context = super(PostListView, self).get_context_data(**kwargs)
+		paginator = context['paginator']
+		page_numbers_range = 5 # 인덱스 숫자 수 표시제한
+		max_index = len(paginator.page_range)
+		
+		page = self.request.GET.get('page')
+		current_page = int(page) if page else 1 # page 가 0일 경우, 1로 할당
+		
+		start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+		end_index = start_index + page_numbers_range
+		# 끝 인덱스는 항상 페이지의 max_index에 맞춤
+		if end_index >= max_index:
+			end_index = max_index
+			
+		page_range = paginator.page_range[start_index:end_index]
+		context['page_range'] = page_range
+		return context		
+
+'''
 def post_list(request):
 	page_data = Paginator(Post.objects.all(), 3)
 	page = request.GET.get('page')
@@ -26,19 +52,5 @@ def post_list(request):
 	context = {'post_list':posts, 'current_page':int(page), 'total_page':range(1, page_data.num_pages + 1)}
 	
 	return render(request, 'post_list.html', context)
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+'''		
 		

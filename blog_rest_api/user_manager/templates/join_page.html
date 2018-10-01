@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		회원가입
-	</title>
+	<title>회원가입</title>
+	<style>
+		form {
+			display: block;
+			padding: 12px;
+		}
+		form div.form_wrapper {
+			margin-bottom: 12px;
+			box-shadow: 2px 2px 4px #000;
+			border: 1px solid #FFF;
+		}
+		form div.form_wrapper div.input_form {
+			display: flex;
+			margin: 12px;
+			align-items: center;
+		}
+		form div.form_wrapper div.input_form label {
+			margin-right: 12px;
+			min-width: 200px;
+		}
+		form div.form_wrapper div.input_form input {
+			flex: 1;
+		}
+		form input[type=submit] {
+			width: 100%;
+			background-color: #ececec;
+			padding: 12px;
+		}
+	</style>
 </head>
 <body>
 	<form action="" method="POST">
 		{% csrf_token %}
-		{{ join_form }}
+		<div class="form_wrapper">
+			<div class="input_form">
+				<label for="{{ join_form.id.id_for_label }}">{{ join_form.id.label }}</label>
+				{{ join_form.id }}
+			</div>
+			<div class="input_form">
+				<label for="{{ join_form.password.password_for_label }}">{{ join_form.password.label }}</label>
+				{{ join_form.password }}
+			</div>			
+			<div class="input_form">
+				<label for="{{ join_form.id.password_check_for_label }}">{{ join_form.password_check.label }}</label>
+				{{ join_form.password_check }}
+			</div>
+		</div>
 		<input type="submit" value="회원가입">
 	</form>
 </body>

@@ -53,5 +53,5 @@ def join_page(request):
 	else:
 		form_data = JoinForm()
 
-	context = {'join_form':JoinForm}
+	context = {'join_form':form_data}
 	return render(request, 'join_page.html', context)
