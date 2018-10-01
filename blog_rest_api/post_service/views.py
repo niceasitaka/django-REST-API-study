@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.views.generic import ListView
 #from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+from rest_framework import serializers, mixins, viewsets
+from rest_framework.generics import GenericAPIView
+
 from .models import Post
+from .serializers import PostSerializer
 
 class PostListView(ListView):
 	model = Post
@@ -52,5 +56,11 @@ def post_list(request):
 	context = {'post_list':posts, 'current_page':int(page), 'total_page':range(1, page_data.num_pages + 1)}
 	
 	return render(request, 'post_list.html', context)
-'''		
-		
+'''
+
+class Post_api(GenericAPIView, mixins.ListModelMixin):
+	queryset = Post.objects.all()
+	serializer_class = PostSerializer
+	
+	def get(self, request, *args, **kwargs):
+		return self.list(request, *args, **kwargs)

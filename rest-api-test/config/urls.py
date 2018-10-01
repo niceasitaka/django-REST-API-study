@@ -16,3 +16,5 @@ urlpatterns = [
 	
 	path('api/blog/', views.Blog_api.as_view()),
 ]
+
+# REST Swagger는 REST Framework로 작성된 url을 인식하여 자동으로 Swagger에 뿌려줌

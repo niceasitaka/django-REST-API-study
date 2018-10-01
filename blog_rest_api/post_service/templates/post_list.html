@@ -45,12 +45,12 @@
 		</thead>
 		
 		<tbody>
-		{% for post in post_list %}
+		{% for item in object_list %}
 			<tr>
-				<td>{{ post.pk }}</td>
-				<td>{{ post.title }}</td>
-				<td>{{ post.author }}</td>
-				<td>{{ post.regdate }}</td>
+				<td>{{ item.pk }}</td>
+				<td>{{ item.title }}</td>
+				<td>{{ item.author }}</td>
+				<td>{{ item.regdate }}</td>
 			</tr>
 		{% endfor %}
 		</tbody>
